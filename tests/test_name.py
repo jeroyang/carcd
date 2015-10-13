@@ -6,10 +6,10 @@ from __future__ import (absolute_import, division,
 from builtins import *
 
 """
-test_carcd
+test_name
 ----------------------------------
 
-Tests for `carcd` module.
+Tests for `name` module.
 """
 
 import unittest
@@ -18,7 +18,7 @@ from collections import OrderedDict
 from carcd import name
 
 
-class TestCarcd(unittest.TestCase):
+class TestName(unittest.TestCase):
 
     def setUp(self):
         pass

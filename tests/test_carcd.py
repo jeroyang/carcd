@@ -34,8 +34,8 @@ class TestCarcd(unittest.TestCase):
         self.assertEqual(result, wanted)
 
     def test_name_split(self):
-        name = '12-2 ABC 大大一.mp3'
-        result = carcd.name_split(name)
+        title = '12-2 ABC 大大一.mp3'
+        result = carcd.name_split(title)
         wanted = OrderedDict([
                     ('number', '12-2'),
                     ('space', ' '),
@@ -62,8 +62,8 @@ class TestCarcd(unittest.TestCase):
         self.assertEqual(result, wanted)
 
     def test_name_handle(self):
-        name = '12-2 何大一.mp3'
-        result = carcd.name_handle(name)
+        title = '12-2 何大一.mp3'
+        result = carcd.name_handle(title)
         wanted = '12-02 He Da Yi 何大一.mp3'
         self.assertEqual(result, wanted)
 

@@ -67,5 +67,11 @@ class TestCarcd(unittest.TestCase):
         wanted = '12-02 He Da Yi 何大一.mp3'
         self.assertEqual(result, wanted)
 
+    def test_is_pinyined(self):
+        data = 'He Da Yi 何大一'
+        self.assertTrue(carcd.is_pinyined(data))
+        data = 'ABC 何大一'
+        self.assertFalse(carcd.is_pinyined(data))
+
     def tearDown(self):
         pass

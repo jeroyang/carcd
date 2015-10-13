@@ -31,7 +31,7 @@ def beautify(context):
     context = re.sub(r'({0}) ({1})'.format(chinese, symbols), r'\1\2', context)
     context = re.sub(r'({1}) ({0})'.format(chinese, symbols), r'\1\2', context)
     remove_multispace = re.sub(r'\s+', ' ', context)
-    return remove_multispace
+    return remove_multispace.strip()
 
 def asciilize(context):
     """
@@ -47,7 +47,7 @@ def asciilize(context):
         else:
             output.append(' ')
             output.extend(pinyin.get(ch).capitalize())
-    return ''.join(output).replace('  ', ' ')
+    return beautify(''.join(output))
 
 def name_split(name):
     """
@@ -116,5 +116,17 @@ def name_handle(name):
     items = OrderedDict(output)
     return beautify(name_join(items))
 
+def is_pinyined(context):
+    """
+    Return True if both Chinese and its pinyin are in the context
+    else return False
+    """
+    if sys.hexversion >= 0x03000000:
+        chinese = r'(?a)[^{}]+'.format(re.escape(string.printable))
+    else: 
+        chinese = r'[^{}]+'.format(re.escape(string.printable))
 
+    chinese_frags = re.findall(chinese, context)
+    tests = [asciilize(frag) in context for frag in chinese_frags]
+    return all(tests)
 
